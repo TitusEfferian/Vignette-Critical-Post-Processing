@@ -1,0 +1,216 @@
+###############################################################################
+# .gitattributes for Unity Projects
+# Sources:
+#   https://gist.github.com/webbertakken/ff250a0d5e59a8aae961c2e509c07fbc (GameCI)
+#   https://github.com/alexkaratarakis/gitattributes/blob/master/Unity.gitattributes
+#   https://hextantstudios.com/unity-gitattributes/
+#   https://npatch.github.io/posts/gitattributes-and-unity-exceptions/
+###############################################################################
+
+# Default: normalize all text file line endings to LF in the repo
+* text=auto
+
+###############################################################################
+# MACRO ATTRIBUTES
+###############################################################################
+
+# Unity YAML assets: no line-ending conversion, use UnityYAMLMerge
+[attr]unity-yaml  -text merge=unityyamlmerge linguist-generated
+
+# Unity JSON assets: force LF
+[attr]unity-json  eol=lf linguist-language=json
+
+# Git LFS binary files
+[attr]lfs-file    filter=lfs diff=lfs merge=lfs -text
+
+###############################################################################
+# SOURCE CODE
+###############################################################################
+
+*.cs        text diff=csharp
+*.cginc     text
+*.compute   text linguist-language=hlsl
+*.hlsl      text linguist-language=hlsl
+*.raytrace  text linguist-language=hlsl
+*.shader    text
+
+# Unity UI Toolkit
+*.tss       text diff=css
+*.uss       text diff=css
+*.uxml      text linguist-language=xml
+
+###############################################################################
+# UNITY JSON FILES (text, LF line endings)
+###############################################################################
+
+*.asmdef            unity-json
+*.asmref            unity-json
+*.index             unity-json
+*.inputactions      unity-json
+*.shadergraph       unity-json
+*.shadersubgraph    unity-json
+
+###############################################################################
+# UNITY YAML FILES (no conversion, UnityYAMLMerge, hidden in diffs)
+###############################################################################
+
+*.anim              unity-yaml
+*.asset             unity-yaml
+*.brush             unity-yaml
+*.controller        unity-yaml
+*.flare             unity-yaml
+*.fontsettings      unity-yaml
+*.giparams          unity-yaml
+*.guiskin           unity-yaml
+*.lighting          unity-yaml
+*.mask              unity-yaml
+*.mat               unity-yaml
+*.meta              unity-yaml
+*.mixer             unity-yaml
+*.overrideController    unity-yaml
+*.physicMaterial        unity-yaml
+*.physicsMaterial2D     unity-yaml
+*.playable          unity-yaml
+*.prefab            unity-yaml
+*.preset            unity-yaml
+*.renderTexture     unity-yaml
+*.scenetemplate     unity-yaml
+*.shadervariants    unity-yaml
+*.signal            unity-yaml
+*.spriteatlas       unity-yaml
+*.spriteatlasv2     unity-yaml
+*.terrainlayer      unity-yaml
+*.unity             unity-yaml
+
+###############################################################################
+# BINARY .asset EXCEPTIONS
+# These are serialized as binary by Unity despite the .asset extension.
+# Must come AFTER the *.asset rule above (last rule wins).
+###############################################################################
+
+LightingData.asset          lfs-file
+*LightingData.asset         lfs-file
+NavMesh-*.asset             lfs-file
+*-NavMesh.asset             lfs-file
+*TerrainData.asset          lfs-file
+*OcclusionCullingData.asset lfs-file
+
+###############################################################################
+# UNITY BINARY FILES
+###############################################################################
+
+*.bundle        lfs-file
+*.cubemap       lfs-file
+*.unitypackage  lfs-file
+
+###############################################################################
+# 3D MODELS
+###############################################################################
+
+*.3dm   lfs-file
+*.3ds   lfs-file
+*.abc   lfs-file
+*.blend lfs-file
+*.blend1 lfs-file
+*.c4d   lfs-file
+*.dae   lfs-file
+*.dxf   lfs-file
+*.fbx   lfs-file
+*.FBX   lfs-file
+*.glb   lfs-file
+*.gltf  lfs-file
+*.ma    lfs-file
+*.max   lfs-file
+*.mb    lfs-file
+*.obj   lfs-file
+*.ply   lfs-file
+*.skp   lfs-file
+*.stl   lfs-file
+
+###############################################################################
+# IMAGES
+###############################################################################
+
+*.bmp   lfs-file
+*.dds   lfs-file
+*.exr   lfs-file
+*.gif   lfs-file
+*.hdr   lfs-file
+*.iff   lfs-file
+*.jpeg  lfs-file
+*.jpg   lfs-file
+*.pict  lfs-file
+*.png   lfs-file
+*.psd   lfs-file
+*.tga   lfs-file
+*.tif   lfs-file
+*.tiff  lfs-file
+*.webp  lfs-file
+
+###############################################################################
+# AUDIO
+###############################################################################
+
+*.aif   lfs-file
+*.aiff  lfs-file
+*.it    lfs-file
+*.mod   lfs-file
+*.mp3   lfs-file
+*.ogg   lfs-file
+*.s3m   lfs-file
+*.wav   lfs-file
+*.xm    lfs-file
+
+###############################################################################
+# VIDEO
+###############################################################################
+
+*.avi   lfs-file
+*.mov   lfs-file
+*.mp4   lfs-file
+*.mpeg  lfs-file
+*.mpg   lfs-file
+*.ogv   lfs-file
+*.wmv   lfs-file
+*.webm  lfs-file
+
+###############################################################################
+# FONTS
+###############################################################################
+
+*.otf   lfs-file
+*.ttf   lfs-file
+
+###############################################################################
+# COMPILED LIBRARIES & EXECUTABLES
+###############################################################################
+
+*.a     lfs-file
+*.apk   lfs-file
+*.dll   lfs-file
+*.exe   lfs-file
+*.so    lfs-file
+
+###############################################################################
+# ARCHIVES
+###############################################################################
+
+*.7z    lfs-file
+*.bz2   lfs-file
+*.gz    lfs-file
+*.rar   lfs-file
+*.tar   lfs-file
+*.zip   lfs-file
+
+###############################################################################
+# DOCUMENTS
+###############################################################################
+
+*.pdf   lfs-file
+
+###############################################################################
+# GITHUB LANGUAGE STATS
+###############################################################################
+
+Assets/Plugins/**               linguist-generated
+Packages/packages-lock.json     linguist-generated
